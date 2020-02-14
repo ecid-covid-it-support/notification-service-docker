@@ -18,7 +18,8 @@ LABEL description="OCARIoT Notification Service"
 
 RUN apk --no-cache add openssl \
     bash \
-    curl
+    curl \
+    grep
 
 RUN  adduser --system --disabled-password ocariot
 USER ocariot
