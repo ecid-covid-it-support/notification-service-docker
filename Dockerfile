@@ -21,9 +21,6 @@ RUN apk --no-cache add openssl \
     curl \
     grep
 
-RUN  adduser --system --disabled-password ocariot
-USER ocariot
-
 COPY --from=builder /notification-service/build/libs/OCARIoT-1.0-SNAPSHOT.jar .
 COPY start.sh start.sh
 
