@@ -3,6 +3,8 @@
 # Export private key and SSL certificate to P12 keystore
 echo "Generating keystore"
 openssl pkcs12 -export -in ${SSL_CERT_PATH} -inkey ${SSL_KEY_PATH} -out /etc/.certs/tmp_keystore.p12 -passout pass:${KEYSTORE_PASS} -name notification
+echo "Remove old certificate from truststore"
+keytool -delete -alias notification -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -noprompt -storepass changeit
 echo "Importing to truststore"
 keytool -import -file ${SSL_CERT_PATH} -alias notification -keystore /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts -noprompt -storepass changeit
 
